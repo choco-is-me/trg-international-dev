@@ -2,15 +2,21 @@ import React from "react";
 import HeroBanner from "@/components/blocks/HeroBanner";
 // Import other block components as needed
 
-// Define specific types for each block
+// Define specific types for each block based on the actual GraphQL response
 interface HeroBannerBlock {
 	type: "hero_banner";
 	attributes: {
-		heroImage: string;
-		heroTitle: string;
-		heroDescription: string;
-		ctaText: string;
-		ctaUrl: string;
+		heroImage: {
+			node: {
+				id: string;
+				sourceUrl: string;
+				altText: string;
+			};
+		};
+		title: string;
+		description: string;
+		ctaButtonText: string;
+		ctaButtonUrl: string;
 	};
 }
 
@@ -34,13 +40,17 @@ const BlockRenderer: React.FC<BlockRendererProps> = ({ blocks }) => {
 						return (
 							<HeroBanner
 								key={index}
-								heroImage={block.attributes.heroImage}
-								heroTitle={block.attributes.heroTitle}
-								heroDescription={
-									block.attributes.heroDescription
+								heroImage={
+									block.attributes.heroImage.node.sourceUrl
 								}
-								ctaText={block.attributes.ctaText}
-								ctaUrl={block.attributes.ctaUrl}
+								imageAlt={
+									block.attributes.heroImage.node.altText ||
+									"Hero image"
+								}
+								title={block.attributes.title}
+								description={block.attributes.description}
+								ctaText={block.attributes.ctaButtonText}
+								ctaUrl={block.attributes.ctaButtonUrl}
 							/>
 						);
 					// Add other block types as needed

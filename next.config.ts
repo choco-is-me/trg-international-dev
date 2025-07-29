@@ -1,11 +1,21 @@
-import { withFaust } from "@faustwp/core";
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
 	reactStrictMode: true,
 	images: {
-		domains: ["chocoisme.local"], // Add your WordPress domain for image optimization
+		remotePatterns: [
+			{
+				protocol: "http",
+				hostname: "chocoisme.local",
+			},
+			// More domain can be added here
+			// {
+			//   protocol: 'https',
+			//   hostname: 'example.com',
+			// },
+		],
 	},
+	// Include any other existing configurations here
 };
 
-export default withFaust(nextConfig);
+export default nextConfig;
