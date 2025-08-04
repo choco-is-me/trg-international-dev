@@ -35,13 +35,22 @@ export const GET_ALL_PAGES = gql`
 
 export const GET_MAIN_MENU = gql`
 	query GetMainMenu {
-		menu(id: "main-navigation", idType: NAME) {
+		menu(id: "trg-international-menu", idType: NAME) {
 			menuItems {
 				nodes {
 					id
 					label
 					url
 					path
+					parentId
+					childItems {
+						nodes {
+							id
+							label
+							url
+							path
+						}
+					}
 				}
 			}
 		}
@@ -50,7 +59,7 @@ export const GET_MAIN_MENU = gql`
 
 export const GET_FOOTER_MENU = gql`
 	query GetFooterMenu {
-		menu(id: "footer-navigation", idType: NAME) {
+		menu(id: "trg-international-menu", idType: NAME) {
 			menuItems {
 				nodes {
 					id

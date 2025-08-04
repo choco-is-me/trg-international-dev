@@ -24,7 +24,7 @@ const Header: React.FC = () => {
 	const { data, loading, error } = useQuery(GET_MAIN_MENU);
 
 	// Extract menu items from the data structure
-	const menuItems = data?.menus?.nodes[0]?.menuItems?.nodes || [];
+	const menuItems = data?.menu?.menuItems?.nodes || [];
 
 	// Filter top-level menu items (items without a parent)
 	const topLevelMenuItems = menuItems.filter(
@@ -33,15 +33,16 @@ const Header: React.FC = () => {
 
 	return (
 		<header className="bg-white shadow-sm">
-			<div className="container mx-auto px-4 py-4 flex justify-between items-center">
-				<Link href="/" className="flex items-center">
+			{/* Changed from justify-between to just flex with gap */}
+			<div className="container mx-auto px-4 py-4 flex items-center">
+				<Link href="/" className="mr-8">
 					<span className="text-primary font-bold text-xl">
 						TRG International
 					</span>
 				</Link>
 
-				{/* Desktop Navigation */}
-				<nav className="hidden md:flex space-x-8">
+				{/* Desktop Navigation - removed hidden class and aligned left */}
+				<nav className="hidden md:flex flex-1 space-x-8">
 					{loading ? (
 						// Loading placeholders
 						<div className="flex space-x-8">
@@ -102,9 +103,9 @@ const Header: React.FC = () => {
 					)}
 				</nav>
 
-				{/* Mobile menu button */}
+				{/* Mobile menu button - positioned to the right */}
 				<button
-					className="md:hidden text-gray-700"
+					className="md:hidden ml-auto text-gray-700"
 					onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
 				>
 					<svg

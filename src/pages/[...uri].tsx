@@ -54,7 +54,7 @@ export default function Page({ page }: PageProps) {
 			)}
 
 			<div className="container mx-auto py-8 px-4">
-				<h1 className="text-3xl font-bold mb-6">{page.title}</h1>
+				{/* Remove the h1 title that was here */}
 				{page.content && (
 					<div dangerouslySetInnerHTML={{ __html: page.content }} />
 				)}

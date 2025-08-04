@@ -13,8 +13,8 @@ interface MenuItem {
 const Footer: React.FC = () => {
 	const { data, loading, error } = useQuery(GET_FOOTER_MENU);
 
-	// Extract menu items from the data structure
-	const menuItems = data?.menus?.nodes[0]?.menuItems?.nodes || [];
+	// Extract menu items from the data structure - fixed this line
+	const menuItems = data?.menu?.menuItems?.nodes || [];
 
 	return (
 		<footer className="bg-primary text-white">
